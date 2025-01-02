@@ -1,5 +1,5 @@
 import { DB } from "../common/config/db.config";
-import { Test } from "../models/test.model";
+import { Test } from "../models/test.model-postgre.ts";
 
 // * test
 export const testServices = async () => {

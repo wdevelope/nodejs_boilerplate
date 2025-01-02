@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import "reflect-metadata";
-import { DB } from "./common/config/db.config";
+import { DB } from "./common/config/postgresql.config";
 import express from "express";
 import cors from "cors";
 import compression from "compression";
@@ -11,6 +11,7 @@ import errorHandler from "./middlewares/errorHandler";
 import router from "./routes";
 import corsOption from "./common/config/cors.config";
 import cookieParser from "cookie-parser";
+import { connectDB } from "./common/config/mongodb.confing";
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use(errorHandler);
 const startServer = async () => {
   try {
     await DB.initialize();
+    await connectDB();
     console.log("Connected to DB");
 
     // port, host
